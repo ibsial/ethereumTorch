@@ -1,0 +1,14 @@
+node_modules
+typechain
+config.ts
+
+.env
+*.txt
+*.csv
+KEY_CHECK_REGEXP
+
+!credentials/privates.example.txt
+!credentials/proxies.example.txt
+!credentials/emails.example.txt
+
+databases/*.json
