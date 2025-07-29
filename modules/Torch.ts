@@ -1,8 +1,9 @@
 import {Contract, isAddress, JsonRpcProvider, parseEther, Wallet} from 'ethers'
 import {bigintToPrettyStr, c, defaultSleep, RandomHelpers, retry} from '../utils/helpers'
 import {chains, timezones} from '../utils/constants'
-import {getBalance, sendTx} from '../utils/web3Client'
+import {getBalance, sendTx, waitGwei} from '../utils/web3Client'
 import {getRandomProxyProvider} from '../utils/utils'
+import { MAX_GWEI } from '../config'
 
 function generateEncryptedField(urlToVerify: string, address: string): string {
     const combined = address.toLowerCase() + '_' + urlToVerify
@@ -31,6 +32,7 @@ class Torch {
             this.log(c.blue(`Ethereum Torch already minted`))
             return
         }
+        await waitGwei(MAX_GWEI)
         let hash = await sendTx(this.signer, {to: torchAddress, data: torchContract.interface.encodeFunctionData('mint', [])})
         this.log(c.green(`Torched successfully ${chains['Base'].explorer + hash}`))
     }

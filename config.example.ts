@@ -1,10 +1,9 @@
-import {ChainName} from './utils/types'
-
-export const DEV = true
+export const DEV = false
 export const maxRetries = 3
 export const shuffleWallets = true
 export const skipFirst = 0 // skips first N wallets
 
+export const MAX_GWEI = 1
 export const executionSetup = {
     executionMode: 'async', // 'async' | 'one-by-one'
 
@@ -15,5 +14,3 @@ export const executionSetup = {
     batchSize: 10, // accounts per batch
     sleepBetweenBatches: 5 // only for *async* mode
 }
-const FUNDER_KEY = ''
-const RECEIVER_ADDRESS = ''
